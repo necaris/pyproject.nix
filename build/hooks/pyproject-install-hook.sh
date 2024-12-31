@@ -8,6 +8,7 @@ pyprojectInstallPhase() {
   pushd dist >/dev/null
 
   for wheel in ./*.whl; do
+    echo @uv@/bin/uv pip install --offline --no-cache --no-deps --link-mode=copy --python=@pythonInterpreter@ --system --prefix "$out" $uvPipInstallFlags "$wheel"
     @uv@/bin/uv pip install --offline --no-cache --no-deps --link-mode=copy --python=@pythonInterpreter@ --system --prefix "$out" $uvPipInstallFlags "$wheel"
     echo "Successfully installed $wheel"
   done
